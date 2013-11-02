@@ -10,8 +10,8 @@
         {% if gallery.created %}<li><span class="glyphicon glyphicon-calendar"></span> {{ gallery.created }}</li>{% endif %}
         {% if photos %}<li><span class="glyphicon glyphicon-picture"></span> {{ photos|length }} photos</li>{% endif %}
         {% if isOwner %}
-            <li><span class="glyphicon glyphicon-edit"></span> <a href="{% url "wis_edit" %}">Editer</a></li>
-            <li><span class="glyphicon glyphicon-plus"></span> <a href="{% url "wis_upload" %}">Ajouter des images</a></li>
+            <li><span class="glyphicon glyphicon-edit"></span> <a href="{% url 'wis_edit' %}">Editer</a></li>
+            <li><span class="glyphicon glyphicon-plus"></span> <a href="{% url 'wis_upload' %}">Ajouter des images</a></li>
         {% endif %}
     </ul>
 </aside>
@@ -26,7 +26,7 @@
         {% for photo in photos %}
             <div class="overlay js-overlay {% if photo.can_expand %}expandable{% endif %}">
                 {% if user == photo.owner %}
-                    <a data-toggle="modal" href="{% url "wis_delete" obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
+                    <a data-toggle="modal" href="{% url 'wis_delete' obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
                 {% endif %}
                 <span class="vignette-description">{{ photo.description|truncatechars:60 }}</span>
                 {% if photo.can_expand %}
@@ -37,7 +37,7 @@
         {% endfor %}
 {% else %}
     Cette galerie est protégée par un mot de passe.
-    <form method="post" action="{% url "wis_gallery_home" gallery_owner gallery_slug %}">
+    <form method="post" action="{% url 'wis_gallery_home' gallery_owner gallery_slug %}">
         {% csrf_token %}
         <input type="hidden" name="type" value="password">
         <input type="password" name="password">

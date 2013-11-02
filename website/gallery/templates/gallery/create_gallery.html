@@ -3,7 +3,7 @@
 {% block content %}
 <section id="creationForm">
     <h2>Création d'une galerie</h2>
-    <form class="formContainer" method="post" action="{% url "wis_create" %}">
+    <form class="formContainer" method="post" action="{% url 'wis_create' %}">
         {% csrf_token %}
         {% for field in form %}
             {% if field.name == "password" %}
@@ -36,4 +36,5 @@
             <input type="submit" value="Créer ma galerie">
         </div>
     </form>
+</section>
 {% endblock %}

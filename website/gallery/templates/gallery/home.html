@@ -12,7 +12,7 @@
 {% block content %}
 <section id="home">
     <h1>WIS</h1>
-    <form action="{% url "wis_search" %}" method="post" class="js-search-form" data-url="{% url "wis_search" %}">
+    <form action="{% url 'wis_search' %}" method="post" class="js-search-form" data-url="{% url 'wis_search' %}">
         {% csrf_token %}
         {{ searchForm }}
     </form>

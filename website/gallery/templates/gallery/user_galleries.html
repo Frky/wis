@@ -5,11 +5,11 @@
     <section id="galleries"> 
     <h2>Mes Galeries</h2>
     {% if isOwner %}
-        <p id="creation"><a href="{% url "wis_create" %}"><button>Créer une nouvelle galerie</button></a></p>
+        <p id="creation"><a href="{% url 'wis_create' %}"><button>Créer une nouvelle galerie</button></a></p>
     {% endif %}
     
     {% for gallery in galleries %}
-            <a href="{% url "wis_gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
+            <a href="{% url 'wis_gallery_home' user.username gallery.slug_name %}"><div class="userGallery">
                     <img src="{% static 'gallery/images/gallery_bg.jpg' %}" height="100px" alt="Gallery Cover">
                 <div class="gMeta">
                     <div class="gName">{{ gallery.title }}</div>

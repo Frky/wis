@@ -3,7 +3,7 @@
 {% block content %}
 <section id="editForm">
     <h2>Édition</h2>
-    <form name="editForm" class="formContainer" method="post" action="{% url "wis_gallery_home" gallery_owner gallery_slug %}">
+    <form name="editForm" class="formContainer" method="post" action="{% url 'wis_gallery_home' gallery_owner gallery_slug %}">
         {% csrf_token %}
         <div class="label">
             Nom de la galerie
@@ -22,7 +22,7 @@
         <input type="hidden" name="type" value="edit">
         <div id="submitButton"> 
             <input type="submit" value="Enregistrer">
-            <a href="{% url "wis_gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
+            <a href="{% url 'wis_gallery_home' gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
         </div>
     </form>
 </section>
