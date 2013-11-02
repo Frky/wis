@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="galleries"> 
+    <h2>Mes Galeries</h2>
+    {% if isOwner %}
+        <p id="creation"><a href="{% url "wis_create" %}"><button>Créer une nouvelle galerie</button></a></p>
+    {% endif %}
+    
+    {% for gallery in galleries %}
+            <a href="{% url "wis_gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
+                <img src="{{ STATIC_URL }}images/gallery_bg.jpg" height="100px" alt="Gallery Cover">
+                <div class="gMeta">
+                    <div class="gName">{{ gallery.title }}</div>
+                    <p class="gDesc">{{ gallery.description }}</p>
+                </div>
+                {# <span class="gDate">{{ gallery.created }}</span> #}
+            </div></a>
+    {% endfor %}
+    </section>
+{% endblock %}

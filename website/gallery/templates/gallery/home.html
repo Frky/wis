@@ -1,0 +1,26 @@
+{% extends "gallery/base.html" %}
+
+{% block assets %}
+{% endblock %}
+
+{% block logo %}
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block content %}
+<section id="home">
+    <h1>WIS</h1>
+    <form action="{% url "wis_search" %}" method="post" class="js-search-form" data-url="{% url "wis_search" %}">
+        {% csrf_token %}
+        {{ searchForm }}
+    </form>
+</section>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/search-bar.js"></script>
+{% endblock %}

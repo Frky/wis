@@ -1,11 +1,15 @@
 from django.conf.urls import patterns, url
+from gallery.views import *
 
-from gallery import views
 
+urlpatterns = patterns('wis.apps.gallery.views',
+                       # Galleries url
+                       url(r'^(?P<user>[-A-Za-z0-9_]+)/(?P<gallery_slug>(.+))$',
+                           gallery_home,
+                           name="wis_gallery_home"),
 
-urlpatterns = patterns('',
-    url(r'^$', views.index, name='index'),
-    url(r'^(?P<question_id>\d+)/$', views.detail, name='details'),
-    url(r'^(?P<question_id>\d+)/results$', views.results, name='results'),
-    url(r'^(?P<question_id>\d+)/vote$', views.vote, name='vote'),
-)
+                       # User galleries
+                       url(r'^(?P<user>[-A-Za-z0-9_]+)$',
+                           user_galleries,
+                           name="wis_user_gallery"),
+                       )

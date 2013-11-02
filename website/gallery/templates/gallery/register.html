@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block topRight %}
+{% endblock %}
+
+{% block content %}
+<section id="registerForm">
+<h2>Inscription</h2>
+<form class="formContainer" method="post" action="{% url "wis_register" %}">
+    {% csrf_token %}
+    {% for field in form %}
+        <div class="fieldContainer">
+            <div class="label">
+                {{ field.label }} 
+            </div>
+            <div class="field {% if field.errors %}has-error{% endif %}" id="{{ field.name }}Field">
+                {{ field }}
+                {% if field.name == "username" %}
+                    <span id="loader"><img src="{{ STATIC_URL }}images/infinity-loader.gif" alt="Vérification ..." /></span>
+                {% endif %}
+                <div class="help-block">
+                    {{ field.errors.as_text }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div id="submitButton"> 
+        <input type="submit" value="Créer mon compte">
+    </div>
+</form>
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/user_check.js"></script>
+</section>
+{% endblock %}
+

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="creationForm">
+    <h2>Création d'une galerie</h2>
+    <form class="formContainer" method="post" action="{% url "wis_create" %}">
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.name == "password" %}
+                <div class="fieldContainer hidden" id="passwordContainer">
+                    <div class="label">
+                        {{ field.label_tag }}
+                    </div>
+                    <div class="field" id="{{ field.name }}Field">
+                       {{ field }}
+                        <div class="help-block">
+                            {{ field.errors }}
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="fieldContainer">
+                    <div class="label">
+                        {{ field.label }} 
+                    </div>
+                    <div class="field {% if field.errors %}has-error{% endif %}" id="{{ field.name }}Field">
+                           {{ field }}
+                            <div class="help-block">
+                                {{ field.errors.as_text }}
+                            </div>
+                        </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <div id="submitButton"> 
+            <input type="submit" value="Créer ma galerie">
+        </div>
+    </form>
+{% endblock %}

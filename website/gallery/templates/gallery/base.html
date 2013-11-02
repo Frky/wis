@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    {% load staticfiles %}
+
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'gallery/generated/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'gallery/css/alert.css' %}" />
+    <link rel="stylesheet" href="{% static 'gallery/css/modal.min.css' %}" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
+    {% block assets %}{% endblock %}
+
+</head>
+
+<body>
+    <header> 
+        {% block header %}
+        {% block logo %}
+        <div id="logo"> 
+            <a href="{% url "wis_home" %}">WIS</a>
+        </div>
+        {% endblock %}
+
+        {% block topRight %}
+        {% if user.is_authenticated %}
+            <div id="userId"> 
+                <a href="{% url "wis_user_gallery" user.username %}">{{ user.username }}</a>
+            </div>
+
+            <div id="signOut">
+                <a href=" {% url "wis_logout" %}">Se déconnecter</a>
+            </div>
+        {% else %}
+            <div id="register"> 
+                <a href="{% url "wis_register" %}">S'inscrire</a>
+            </div>
+
+            {% block authForm %}
+            <div class="flipFormContainer">
+                <div class="flipper">
+                    <div class="front">
+                        <div id="signIn"><!-- onclick="hideElement('signIn'); displayElement('login');" -->
+                            Se connecter
+                        </div>
+                    </div>
+                    <div class="back">
+                        <form id="login" class="inline" method="POST" action="{% url "wis_login" %}">
+                            {% csrf_token %}
+                            {{ loginForm.as_p }}
+                            <input type="submit" id="validate" value="Go!" /> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
+            {% endblock %}
+
+        {% endif %}
+        {% endblock %}
+        {% endblock %}
+    
+    {% if messages %}
+        <div id="message">
+        {% for message in messages %}
+            {% if message.tags == "error" %}
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Erreur !</strong> {{ message }}
+            {% elif message.tags == "success" %}
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Succès !</strong> {{ message }}
+            {% else %}
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong>Info !</strong> {{ message }}
+            {% endif %}
+                </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    </header>
+    
+    {% block aside %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        {% block footer %}
+        {% endblock %}
+    </footer>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/common.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/alert.js"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

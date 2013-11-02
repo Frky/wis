@@ -1,0 +1,673 @@
+@import "compass/css3/transition";
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "colors.scss";
+@import "fonts.scss";
+
+$headerHeight: 46px;
+
+body {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: $background-color;
+    // font-family: Walkway;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+}
+
+header {
+    color: white;
+    background-color: $background-color;
+    background-color: $main-color;
+    width: 100%;
+    height: $headerHeight;
+    position: fixed;
+    top: 0px;
+    box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15) /*Less ugly with opacity like this*/;
+    z-index: 1024;
+
+    #signIn, #register, #signOut, #userId {
+        display: inline-block;
+        float: right;
+        margin-right: 20px;
+        margin-top: 13px;
+
+        // font-family: Arial;
+        font-weight: 200;
+        &:hover {
+            color: orange;
+        }
+    }
+
+    #signIn {
+        margin-right: 10px;
+    }
+
+    #logo {
+        font-family: Walkway, serif;
+        display: inline-block;
+        float: left;
+        font-size: 2.5em;
+        margin-left: 100px;
+        margin-top: 1px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Walkway, serif;
+}
+
+h1 {
+    font-size: 12em;
+    text-align: center;
+    color: $main-color;
+}
+
+h2 {
+    font-size: 2.5em;
+    font-weight: 100;
+    color: $main-color;
+}
+
+h3 {
+    &#album {
+        font-size: 1em;
+        font-weight: 100;
+        color: #BDC3C7;
+        margin-bottom: 0px;
+    }
+    & + h2 {
+        margin-top: -5px;
+    }
+}
+
+#home {
+    width: 800px;
+    height: 400px;
+    margin: auto;
+    margin-top: 150px;
+
+    h1 {
+        margin: 0 auto 0 auto;
+        font-size: 20em;
+        font-weight: 100;
+        font-family: Walkway, serif;
+    }
+    .tt-query, .tt-hint {
+        display: block;
+        position: relative;
+        width: 85%;
+        margin: 0 auto 0 auto;
+        height: 36px;
+        padding-left: 15px;
+        padding-right: 0px;
+        font-family: Arial;
+        font-size: 0.9em;
+
+        background-color: transparent;
+    }
+    .tt-query {
+        margin-top: -40px;
+    }
+    .tt-hint {
+        position: relative;
+        background-image: url("../../images/search.jpeg");
+        background-repeat: no-repeat;
+        background-position: 660px 5px;
+        background-size: 25px 25px;
+        background-color: #FFFFFF;
+        color: $aside-border-color;
+    }
+    .tt-dropdown-menu {
+        list-style: none;
+        width: 82%;
+        background: rgba(255, 255, 255, 0.5);
+        margin: 0 auto 0 auto;
+        padding: 2px 0 20px 0;
+        border: 1px solid $aside-border-color;
+        border-top: 0px;
+        max-height: 200px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        h2 {
+            margin: 0px;
+            font-size: 1.5em;
+            padding-left: 30px;
+            width: 90%;
+            margin: 10px 0 10px 20px;
+            border-bottom: 1px solid $aside-border-color;
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+        .tt-suggestions {
+            display: block;
+            padding: 0 20px 0 20px;
+            margin-left: 20px;
+            height: 32px;
+            line-height: 32px;
+            p {
+                margin: 0;
+            }
+            &.active {
+                width: 80%;
+                background: $background-color;
+            }
+            &:hover {
+                cursor:pointer;
+            }
+        }
+    }
+}
+
+#login {
+
+    margin-top: 8px;
+    margin-right: 16px;
+
+    vertical-align: middle;
+
+    &.inline {
+        float: right;
+    }
+    &.inline label {
+        display: None;
+    }
+    &.inline p {
+        display: inline;
+    }
+    #validate {
+        //display: none;
+    }
+}
+
+aside {
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    text-align: right;
+    border-right: 1px solid $aside-border-color;
+    padding-right: 10px;
+    padding-top: 50px;
+
+    ul {
+        list-style: none;
+
+        &#galleryInfos {
+            font-family: Walkway-Expand, serif;
+            font-size: 1.1em;
+            line-height: 30px;
+            color: #34495e;
+        }
+    }
+}
+
+section {
+    &#gallery {
+        width: 760px;
+        margin-left: 385px;
+        margin-top: 60px;
+        padding-top: 40px;
+
+        .column {
+            width: 240px;
+            float: left;
+            margin-right: 13px;
+        }
+    }
+}
+
+
+hr {
+    width: 550px; 
+    margin-bottom: 40px;
+}
+
+#registerForm, #creationForm, #uploadForm, #editForm, #galleries {
+    margin: auto;
+    margin-top: 130px;
+    margin-bottom: 170px;
+    text-align: center;
+    width: 800px;
+
+    h2 {
+        padding-bottom: 40px;
+
+        border-style: solid;
+        border-color: $main-color; 
+        border-width: 0px 0px 1px 0px;
+    }
+}
+
+.overlay {
+    position: relative;
+    display: block;
+    margin-bottom: 13px;
+    overflow: hidden;
+
+    &:before {
+        @include transition(0.5s background-color ease);
+        content: '';
+        display: block;
+        position:absolute;
+        width:100%;
+        height:100%;
+        background-color: rgba(44, 62, 80, 0);
+    }
+
+    span.vignette-description {
+        @include transition(0.3s margin-left ease 0.2s);
+        display: block;
+        width: 195px;
+        position: absolute;
+        color: $background-color;
+        font-family: Walkway-Expand, serif;
+        font-size: 0.9em;
+        margin-top: 40px;
+        margin-left: 300px;
+        word-break: break-word;
+    }
+    .vignette {
+        width: 240px;
+        margin-bottom: -3px;
+        position: relative;
+        z-index: -1;
+        display: block;
+    }
+    .vignette-expand {
+        display: none;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+    .delete-photo {
+        position: absolute;
+        z-index: 4096;
+        font-size: 1.5em;
+        color: #FFF;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 300;
+        text-align: right;
+        width: 240px;
+        right: 10px;
+        display: none;
+    }
+    &:hover {
+        .delete-photo {
+            display: block;
+        }
+    }
+}
+.js-overlay {
+    &:hover {
+        span.vignette-description {
+            display: block;
+            position: absolute;
+            margin-left: 20px;
+        }
+        &:before {
+            content: '';
+            display: block;
+            position:absolute;
+            width:100%;
+            height:100%;
+            margin-top: 0px;
+            background-color: rgba(44, 62, 80, 0.7);
+        }
+        .vignette-expand {
+            display: block;
+        }
+    }
+}
+
+/* BOOTSTRAP CSS import : ugly but we discuss about that soon */
+
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    display: inline-block;
+    line-height: 20px;
+    color: $main-color;
+    vertical-align: middle;
+    border: 1px solid $main-color;
+
+    @include border-radius(2px);
+    @include box-shadow(inset 0 1px 1px rgba(44, 62, 80, 0.175));
+    @include transition(border linear 0.2s, box-shadow linear 0.2s);
+
+    &:focus {
+        border-color: rgba(82, 168, 236, 0.8);
+        outline: 0;
+        outline: thin dotted \9;
+        /* IE6-9 */
+        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
+    }
+}
+
+input[type="search"] {
+    background-image: url("../../images/search.jpeg");
+    background-repeat: no-repeat;
+    background-position: 765px 4px;
+    background-size: 25px 25px;
+    padding-right: 10px;
+    background-color: transparent;
+
+    &:focus {
+        background-image: none;
+    }
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../../images/glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+.icon-white {
+  background-image: url("../../images/glyphicons-halflings-white.png");
+}
+
+.icon-search {
+  background-position: -48px 0;
+}
+
+.icon-resize-full {
+  background-position: -360px -96px;
+}
+
+.icon-map-marker {
+  background-position: -24px -72px;
+}
+
+.icon-picture {
+  background-position: -456px -48px;
+}
+
+.icon-user {
+  background-position: -168px 0;
+}
+
+
+// FLIPPING FORM
+/* entire container, keeps perspective */
+.flipFormContainer {
+    -webkit-perspective: 1000;
+    float: right;
+    margin-right: 10px;
+    background-color: $background-color;
+    height: $headerHeight + 0px;
+}
+    /* flip the pane when hovered */
+    .flipFormContainer:hover .flipper, .flipFormContainer.hover .flipper {
+        -webkit-transform: rotateX(-180deg);
+    }
+
+.flipFormContainer, .front, .back {
+    width: 400px;
+    position: relative;
+}
+
+/* flip speed goes here */
+.flipper {
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform-origin: 100% $headerHeight / 2; /* half of height */
+
+    position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+    -webkit-backface-visibility: hidden;
+    background-color: $main-color;
+    height: $headerHeight;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+}
+
+/* back, initially hidden pane */
+.back {
+    -webkit-transform: rotateX(180deg);
+}
+
+/* Registration page style */
+/* Loader while checking username availability */
+#loader {
+    display: none;
+
+    img {
+        height: 10px;
+    }
+}
+
+/* Forms */
+form {
+    font-family: Arial;
+}
+
+.formContainer {
+    display: block;
+
+    width: 100%;
+    text-align: left;
+    margin: auto;
+    margin-top: 40px;
+
+    .field {
+        display: inline-block;
+        width: 50%;
+        margin-bottom: 20px;
+        margin-left: 10px;
+
+        input {
+            margin-left: 0px;
+        }
+    }
+
+    .label {
+        display: inline-block;
+        width: 45%;
+        margin-right: 10px;
+        text-align: right;
+    }
+
+    input {
+        width: 150px;
+        margin-left: 50px;
+    }
+
+    #submitButton {
+        text-align: center;
+        float: center;
+        margin: auto;
+        margin-top: 50px;
+    }
+
+}
+
+.help-block {
+    display: inline-block;
+    font-size: 0.6em;
+}
+
+/* Get an error */
+.has-error .help-block {
+  color: #b94a48;
+}
+
+.has-error .form-control {
+  border-color: #b94a48;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-error .form-control:focus {
+  border-color: #953b39;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #d59392;
+}
+/* All OK */
+.has-success .help-block {
+  color: #468847;
+}
+
+.has-success .form-control {
+  border-color: #468847;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-success .form-control:focus {
+  border-color: #356635;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #7aba7b;
+}
+
+#galleries {
+
+    a {
+        text-decoration: none;
+    }
+
+    #creation {
+        display: block;
+        width: 100%;
+        margin-bottom: 60px;
+        text-align: right;
+    }
+
+    .userGallery {
+
+        color: black;
+        margin-bottom: 20px;
+        vertical-align: middle;
+
+        img {
+            max-width: 200px;
+        }
+
+        .gMeta {
+            display: inline-block;
+            height: 100px;
+            width: 350px;
+            vertical-align: top;
+            margin-left: 30px;
+
+            .gName {
+                font-family: Walkway;
+                margin-top: 5px;
+                padding-right: 10px;
+                vertical-align: top;
+                width: 100%;
+                text-align: right;
+
+                border-style: solid;
+                border-width: 0px 0px 1px 0px;
+
+                font-weight: bold;
+            }
+
+            .gDesc {
+                font-style: italic;
+                text-align: left;
+                padding-left: 10px;
+            }
+
+        }
+
+        p {
+            vertical-align: top;
+        }
+
+    }
+
+    .userGallery:hover {
+        background-color: #bdc3c7;
+    }
+
+}
+
+.fileupload-content {
+    width: 550px;
+    margin: auto;
+    margin-top: 40px;
+    padding-left: 50px;
+
+    .preview {
+        width: 60px;
+    }
+
+    .name {
+        width: 200px; 
+    }
+
+    .size {
+        width: 75px;
+    }
+
+    .start, .cancel {
+        widthr: 65px;
+    }
+}
+
+.hidden {
+    display: None;
+}
+
+.badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    color: #ffffff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #CCCCCC;
+    border-radius: 10px;
+    margin: -3px 0 0 5px;
+}
+
+
+table {
+    margin: auto;
+}

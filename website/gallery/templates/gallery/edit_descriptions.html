@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="editForm">
+    <h2>Édition</h2>
+    <form name="editForm" class="formContainer" method="post" action="{% url "wis_gallery_home" gallery_owner gallery_slug %}">
+        {% csrf_token %}
+        <div class="label">
+            Nom de la galerie
+        </div>
+        <div class="field">
+            <input name="gallery_name" value="{{ gallery }}">
+        </div>
+        <table>
+            {% for photo in photos %}
+            <tr>
+                <td><img src="{{ MEDIA_URL }}{{ photo.small_path }}" width="50px"></td>
+                <td><input name="{{ photo.pk }}.desc" value="{{ photo.description }}" placeholder="Description"></td>
+                <td><input name="{{ photo.pk }}.place" value="{{ photo.place }}" placeholder="Lieu"></td>
+            {% endfor %}
+        </table>
+        <input type="hidden" name="type" value="edit">
+        <div id="submitButton"> 
+            <input type="submit" value="Enregistrer">
+            <a href="{% url "wis_gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
+        </div>
+    </form>
+
+{% endblock %}

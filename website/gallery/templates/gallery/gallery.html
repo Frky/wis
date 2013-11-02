@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block aside %}
+<aside>
+    <h3 id="album">album</h3>
+    <h2>{{ gallery.title }}</h2>
+
+    <ul id="galleryInfos">
+        {% if gallery.place %}<li>{{ gallery.place }}</li>{% endif %}
+        {% if gallery.created %}<li>{{ gallery.created }}</li>{% endif %}
+        {% if images %}<li>{{ images|length }} photos</li>{% endif %}
+        {% if isOwner %}
+            <li><a href="{% url "wis_edit" %}">Editer</a></li>
+            <li><a href="{% url "wis_upload" %}">Ajouter des images</a></li>
+        {% endif %}
+    </ul>
+</aside>
+{% endblock %}
+
+{% block content %}
+<section id="gallery">
+{% if canView %}
+        <div id="left_column" class="column"></div>
+        <div id="center_column" class="column"></div>
+        <div id="right_column" class="column"></div>
+        {% for photo in photos %}
+            <div class="overlay js-overlay {% if photo.can_expand %}expandable{% endif %}">
+                {% if user == photo.owner %}
+                    <a data-toggle="modal" href="{% url "wis_delete" obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
+                {% endif %}
+                <span class="vignette-description">{{ photo.description|truncatechars:60 }}</span>
+                {% if photo.can_expand %}
+                    <span class="icon-resize-full icon-white vignette-expand"></span>
+                {% endif %}
+                <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.medium_path }}" src="" data-index="{{ forloop.counter }}"/>
+            </div>
+        {% endfor %}
+{% else %}
+    Cette galerie est protégée par un mot de passe.
+    <form method="post" action="{% url "wis_gallery_home" gallery_owner gallery_slug %}">
+        {% csrf_token %}
+        <input type="hidden" name="type" value="password">
+        <input type="password" name="password">
+        <input type="submit">
+    </form>
+{% endif %}
+</section>
+{% include "partials/_modal.html" with id="popinDelete" title="Supprimer cette image" apply="Supprimer" cancel="Annuler" message="Êtes-vous sûr de vouloir supprimer cette image ?" %}
+
+{% endblock %}
+
+
+{% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/modal.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/gallery.js"></script>
+{% endblock %}
