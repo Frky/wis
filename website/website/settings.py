@@ -14,14 +14,14 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-        # 'default': {
-        #     'ENGINE': 'django.db.backends.postgresql_psycopg2',   
-        #     'NAME': 'django_db',                                  
-        #     'USER': 'django_login',                               
-        #     'PASSWORD': 'toor',                                   
-        #     'HOST': '',                                     
-        #     'PORT': '',                                     
-        # }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',   
+            'NAME': 'django_db',                                  
+            'USER': 'django_login',                               
+            'PASSWORD': 'toor',                                   
+            'HOST': '',                                     
+            'PORT': '',                                     
+        }
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
