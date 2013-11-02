@@ -208,6 +208,7 @@ aside {
             line-height: 30px;
             color: #34495e;
             a {
+                color: inherit;
                 text-decoration: underline;
                 &:visited {
                     color: inherit;
