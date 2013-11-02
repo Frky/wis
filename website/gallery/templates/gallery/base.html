@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'gallery/generated/css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'gallery/css/alert.css' %}" />
     <link rel="stylesheet" href="{% static 'gallery/css/modal.min.css' %}" />
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/jquery-1.10.2.js' %}"></script>
     {% block assets %}{% endblock %}
 
 </head>
@@ -96,8 +96,8 @@
         {% endblock %}
     </footer>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/common.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/alert.js"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/common.js' %}"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/alert.js' %}"></script>
     {% block scripts %}
     {% endblock %}
 </body>

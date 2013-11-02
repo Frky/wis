@@ -27,7 +27,7 @@ def edit_descriptions(request):
     elif request.user.username != request.session["gallery_owner"]:
         return HttpResponseBadRequest(ERROR_PERM)
 
-    template_name = "edit_descriptions.html"
+    template_name = "gallery/edit_descriptions.html"
 
     gallery_slug = request.session['gallery']
     context['gallery_owner'] = request.user
@@ -49,7 +49,7 @@ def delete_obj(request, obj_type, obj_id):
 
 def gallery_home(request, user, gallery_slug):
 
-    template_name = "gallery.html"
+    template_name = "gallery/gallery.html"
 
     request.session['gallery'] = gallery_slug
     request.session['gallery_owner'] = user
@@ -115,7 +115,7 @@ def gallery_home(request, user, gallery_slug):
 
 
 def user_galleries(request, user):
-    template_name = "user_galleries.html"
+    template_name = "gallery/user_galleries.html"
 
     context['isOwner'] = (user == str(request.user))
 
@@ -143,7 +143,7 @@ def search(request):
 
 
 def create_gallery(request):
-    template_name = "create_gallery.html"
+    template_name = "gallery/create_gallery.html"
 
     form = GalleryForm(request.POST or None)
 
@@ -204,7 +204,7 @@ def sign_out(request):
 
 def register(request):
 
-    template_name = "register.html"
+    template_name = "gallery/register.html"
 
     form = UserCreationForm(request.POST or None)
 
@@ -222,7 +222,7 @@ def register(request):
 
 def upload(request):
 
-    template_name = "upload.html"
+    template_name = "gallery/upload.html"
     context['canUpload'] = False
 
     if str(request.user) == "AnonymousUser":
@@ -463,7 +463,7 @@ def ajax_upload(request):
             return HttpResponse(response_data, mimetype="application/json")
 
     else:  # GET
-        template_name = "ajax.html"
+        template_name = "gallery/ajax.html"
         context['uid'] = uuid.uuid4()
         context['open_tv'] = u'{{'
         context['close_tv'] = u'}}'

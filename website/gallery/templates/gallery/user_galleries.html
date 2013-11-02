@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'gallery/base.html' %}
 
 {% block content %}
+    {% load staticfiles %}
     <section id="galleries"> 
     <h2>Mes Galeries</h2>
     {% if isOwner %}
@@ -9,7 +10,7 @@
     
     {% for gallery in galleries %}
             <a href="{% url "wis_gallery_home" user.username gallery.slug_name %}"><div class="userGallery">
-                <img src="{{ STATIC_URL }}images/gallery_bg.jpg" height="100px" alt="Gallery Cover">
+                    <img src="{% static 'gallery/images/gallery_bg.jpg' %}" height="100px" alt="Gallery Cover">
                 <div class="gMeta">
                     <div class="gName">{{ gallery.title }}</div>
                     <p class="gDesc">{{ gallery.description }}</p>

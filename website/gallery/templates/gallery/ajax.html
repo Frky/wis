@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gallery/base.html" %}
 
 {% block content %}
 
@@ -21,6 +21,8 @@
 
     -->
 
+    {% load staticfiles %}
+
     <!-- jQuery Javascript -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
@@ -28,12 +30,12 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 
     <!-- Fixing CSRF in Django for jQuery -->
-    <script src="/static/js/jquery_fix_csrf.js"></script>
+    <script src="{% static 'gallery/js/jquery_fix_csrf.js' %}"></script>
 
     <!-- jQuery Upload files -->
-    <script src="/static/js/jquery.iframe-transport.js"></script>
-    <script src="/static/js/jquery.fileupload.js"></script>
-    <script src="/static/js/jquery.fileupload-ui.js"></script>
+    <script src="{% static 'gallery/js/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'gallery/js/jquery.fileupload.js' %}"></script>
+    <script src="{% static 'gallery/js/jquery.fileupload-ui.js' %}"></script>
 
 <div id="fileupload">
     <form action="{% url "wis_upload" %}" method="POST" enctype="multipart/form-data">
@@ -73,7 +75,7 @@
         </td>
         <td class="start">
             <button>Envoyer</button>
-            <span id="loader"><img src="{{ STATIC_URL }}images/jumping-loader.gif" alt="Upload en cours ..." /></span>
+            <span id="loader"><img src="{% static 'gallery/images/jumping-loader.gif' %}" alt="Upload en cours ..." /></span>
         </td>
         {{ open_tv }}/if{{ close_tv }}
         <td class="cancel">

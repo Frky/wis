@@ -1,7 +1,9 @@
-{% extends "base.html" %}
+{% extends "gallery/base.html" %}
 
 {% block topRight %}
 {% endblock %}
+
+{% load staticfiles %}
 
 {% block content %}
 <section id="registerForm">
@@ -16,7 +18,7 @@
             <div class="field {% if field.errors %}has-error{% endif %}" id="{{ field.name }}Field">
                 {{ field }}
                 {% if field.name == "username" %}
-                    <span id="loader"><img src="{{ STATIC_URL }}images/infinity-loader.gif" alt="Vérification ..." /></span>
+                    <span id="loader"><img src="{% static 'gallery/images/infinity-loader.gif' %}" alt="Vérification ..." /></span>
                 {% endif %}
                 <div class="help-block">
                     {{ field.errors.as_text }}
@@ -29,8 +31,8 @@
     </div>
 </form>
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/user_check.js"></script>
+<script type="text/javascript" src="{% static 'gallery/js/jquery-1.10.2.js' %}"></script>
+<script type="text/javascript" src="{% static 'gallery/js/user_check.js' %}"></script>
 </section>
 {% endblock %}
 

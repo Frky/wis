@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "gallery/base.html" %}
 
 {% block aside %}
 <aside>
@@ -45,13 +45,14 @@
     </form>
 {% endif %}
 </section>
-{% include "partials/_modal.html" with id="popinDelete" title="Supprimer cette image" apply="Supprimer" cancel="Annuler" message="Êtes-vous sûr de vouloir supprimer cette image ?" %}
+{% include "gallery/partials/_modal.html" with id="popinDelete" title="Supprimer cette image" apply="Supprimer" cancel="Annuler" message="Êtes-vous sûr de vouloir supprimer cette image ?" %}
 
 {% endblock %}
 
 
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/modal.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/gallery.js"></script>
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'gallery/js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/modal.js' %}"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/gallery.js' %}"></script>
 {% endblock %}

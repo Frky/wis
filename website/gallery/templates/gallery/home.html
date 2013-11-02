@@ -20,7 +20,8 @@
 {% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/search-bar.js"></script>
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'gallery/js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/search-bar.js' %}"></script>
 {% endblock %}
