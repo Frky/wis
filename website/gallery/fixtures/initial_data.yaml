@@ -1,0 +1,204 @@
+# Fixtures for User django model
+
+- model: auth.user
+  pk: 1
+  fields:
+    username: wisest
+    first_name: WIS Team
+    password: pbkdf2_sha256$10000$gFuY0t5So17T$D0Gjrf3yC7OL4CnuKzSjZDxjqhaBpao1QFwEzKHLAnQ=
+- model: auth.user
+  pk: 2
+  fields:
+    username: estelle
+    first_name: Estelle
+    password: pbkdf2_sha256$10000$gFuY0t5So17T$D0Gjrf3yC7OL4CnuKzSjZDxjqhaBpao1QFwEzKHLAnQ=
+
+# Fixtures for Gallery model
+
+- model: gallery.gallery
+  pk: 1
+  fields:
+    title: Le sac sans fond.
+    description: Je nettoie les poubelles.
+    slug_name: garbage
+    public: 1
+    owner: 1
+    place: Everywhere
+- model: gallery.gallery
+  pk: 2
+  fields:
+    title: Freedom.
+    description: Voyages sur la lune.
+    slug_name: freedom
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 3
+  fields:
+    title: Métro.
+    description: Rat d égout.
+    slug_name: metro
+    public: 1
+    owner: 1
+    place: Paris
+- model: gallery.gallery
+  pk: 4
+  fields:
+    title: Une étoile est née1
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 5
+  fields:
+    title: Une étoile est née2
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 6
+  fields:
+    title: Une étoile est née3
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 2
+    place: Paris
+- model: gallery.gallery
+  pk: 7
+  fields:
+    title: Une étoile est née4
+    description: Au lit mon enfant.
+    slug_name: bloupynou-piezhf
+    public: 1
+    owner: 1
+    place: Paris
+
+# Fixtures for Photo model
+
+- fields: {created: null, description: "C'est pas avec ce v\xE9lo que tu vas gagner\
+      \ le Tour de France mon petit pote", gallery: 2, large_path: pic/test/large/d835a148eb-large.jpg,
+    medium_path: pic/test/medium/d835a148eb-medium.jpg, owner: 2, photo_hash: d835a148ebedfafb2a94d670e1db2f980c106e50057eba8e65d12c0c976627ec53c02daf08183b708cf033b2d30bd7346452c96803c9766dd95ed020ed8f2f11,
+    place: Paris, small_path: pic/test/small/d835a148eb-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:44:54.946067+00:00'}
+  model: gallery.photo
+  pk: 1
+- fields: {created: null, description: "L'iPhone 5S aura un lecteur d'empreintes digitales.\
+      \ C'est fou de voir ce que fabrique un enfant chinois quand ta ni\xE8ce gal\xE8\
+      re sur un puzzle.", gallery: 2, large_path: pic/test/large/cb48fc60f0-large.jpg,
+    medium_path: pic/test/medium/cb48fc60f0-medium.jpg, owner: 2, photo_hash: cb48fc60f06cef6afb2e2c6feae4392c1cdcce06dfd47eed61a9f2ca8669be0ae83a9bb53230713175c39c87fa6ef9da1a5b0e3a1a157d40ed3ce06fda722b22,
+    place: Rome, small_path: pic/test/small/cb48fc60f0-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:46:00.176714+00:00'}
+  model: gallery.photo
+  pk: 2
+- fields: {created: null, description: "Le onze de d\xE9part de l'OM : Mandanda -\
+      \ Fanni", gallery: 2, large_path: pic/test/large/338c5d8a2b-large.jpg, medium_path: pic/test/medium/338c5d8a2b-medium.jpg,
+    owner: 2, photo_hash: 338c5d8a2b,
+    place: Marseille, small_path: pic/test/small/338c5d8a2b-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:46:30.070481+00:00'}
+  model: gallery.photo
+  pk: 3
+- fields: {created: null, description: "Les relous des rues \xE9pingl\xE9s sur papier ",
+    gallery: 2, large_path: pic/test/large/5dd598ef2f-large.jpg, medium_path: pic/test/medium/5dd598ef2f-medium.jpg,
+    owner: 2, photo_hash: 5dd598ef2f0d2a945b8bc33f06f804553be0d57d628a31e501208112b81a36eb3551ba3258c2c9a36554bba241f1fb187fc7f26cea90dc9e5f6ce2805a2d79ba,
+    place: Nice, small_path: pic/test/small/5dd598ef2f-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:46:47.492531+00:00'}
+  model: gallery.photo
+  pk: 4
+- fields: {created: null, description: "Vivante, vu des DIZAINES d'orques,suis tr\xE8\
+      s tr\xE8s tr\xE8s heureuse, h\xE2te d'avoir acc\xE8s \xE0 un vrai lit et une\
+      \ vraie douche (dans mon camping car.)", gallery: 2, large_path: pic/test/large/c4f0c613d0-large.jpg,
+    medium_path: pic/test/medium/c4f0c613d0-medium.jpg, owner: 2, photo_hash: c4f0c613d04e2976bfba8c12c601f6693ad34d73199af9c6bf221e577971e4e8e0340ef9dcaa6b17c2e74f77f301267c8a97313c0e59f6f3f11b8c583cd0b146,
+    place: Cap d'adge, small_path: pic/test/small/c4f0c613d0-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:47:12.218783+00:00'}
+  model: gallery.photo
+  pk: 5
+- fields: {created: null, description: "Ivre, il r\xE9ussit \xE0 trouver une amende\
+      \ plus stupide que celles de l'Etat fran\xE7ais : pic.twitter.com/zIhH3rLZnT",
+    gallery: 2, large_path: pic/test/large/4a90b67bb6-large.jpg, medium_path: pic/test/medium/4a90b67bb6-medium.jpg,
+    owner: 2, photo_hash: 4a90b67bb6b613920c734395d1c92cae37ef447203bcdca8f0f20aa4a2268e16343d49453100857714af11de41682bf77c6211df918a46dd5dfe3ce0ebc16497,
+    place: Leveaux, small_path: pic/test/small/4a90b67bb6-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:47:39.578622+00:00'}
+  model: gallery.photo
+  pk: 6
+- fields: {created: null, description: "\xCAtre \xE0 New-York et devoir manger une\
+      \ salade, finir PD.", gallery: 2, large_path: pic/test/large/aa2d353436-large.jpg,
+    medium_path: pic/test/medium/aa2d353436-medium.jpg, owner: 2, photo_hash: aa2d353436f7ab45d0206eef86967239af4c398339ac2906933d72dd71d290943c78e8da7d51d927e0e75ba1b05a7fc5ccc96af6ec084afe22f59a6b7d235286,
+    place: NY, small_path: pic/test/small/aa2d353436-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:47:59.506086+00:00'}
+  model: gallery.photo
+  pk: 7
+- fields: {created: null, description: Look du jour. instagram.com/p/ccFMqwqJaA/,
+    gallery: 2, large_path: pic/test/large/67c72d09b4-large.jpg, medium_path: pic/test/medium/67c72d09b4-medium.jpg,
+    owner: 2, photo_hash: 67c72d09b480764be70f03d03f72fbaf6d14b3be2aa515d8d9a64e42c8ef27bdf47c50a7911033e0f75d45339e57164bfc84b55ff55a6342cfc799b5ef30c865,
+    place: Jour, small_path: pic/test/small/67c72d09b4-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:48:22.745253+00:00'}
+  model: gallery.photo
+  pk: 8
+- fields: {created: null, description: "Luc Chatel raconte avec \xE9motion son enfance\
+      \ pass\xE9e dans les mines de charbon ow.ly/nuI9B", gallery: 2, large_path: pic/test/large/498a179669-large.jpg,
+    medium_path: pic/test/medium/498a179669-medium.jpg, owner: 2, photo_hash: 498a1796699ff66f197125c4ba968ca65467a36b880e4564c87a0b12156ec18ed542f03c8457b5364d6f5608033e2cdaa12c0140b6b41c9eace3387407a18d98,
+    place: OLA, small_path: pic/test/small/498a179669-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:49:02.898663+00:00'}
+  model: gallery.photo
+  pk: 9
+- fields: {created: null, description: Natation - Gilot en finale du 100 m bit.ly/14Dl3XA,
+    gallery: 2, large_path: pic/test/large/9fc087b4c8-large.jpg, medium_path: pic/test/medium/9fc087b4c8-medium.jpg,
+    owner: 2, photo_hash: 9fc087b4c8a749ad78268e088e6129cf10e1d2dd48c7314e2c37e06d733115f66f265b7fd7fa5c9bc911e663ef4c8bee765867680cbb3dc250631f74d8d2ce29,
+    place: Piscine, small_path: pic/test/small/9fc087b4c8-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:49:33.291051+00:00'}
+  model: gallery.photo
+  pk: 10
+- fields: {created: null, description: Canard, gallery: 3, large_path: pic/test/large/3ef9e898e9-large.jpg,
+    medium_path: pic/test/medium/3ef9e898e9-medium.jpg, owner: 1, photo_hash: 3ef9e898e96badeaa85e34eba44067f33252c330a4d9e6c50e5c74a6a3c22220755e26037a8a9c4a21c579121453452048c0e63df3813eefbb4dca11d6cac04b,
+    place: Mare, small_path: pic/test/small/3ef9e898e9-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:51:14.299743+00:00'}
+  model: gallery.photo
+  pk: 11
+- fields: {created: null, description: Franck, gallery: 3, large_path: pic/test/large/b1f67fa69d-large.jpg,
+    medium_path: pic/test/medium/b1f67fa69d-medium.jpg, owner: 1, photo_hash: b1f67fa69dfc0c85b0eefc854e719cef74a3ae5d30acbad8b1de3800bdb6d25ab1793e56123fdfb12e70aa97f638e28e9fbe96606dfc55eedd95cf0f63680a79,
+    place: Paris, small_path: pic/test/small/b1f67fa69d-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:51:23.664926+00:00'}
+  model: gallery.photo
+  pk: 12
+- fields: {created: null, description: Creative, gallery: 3, large_path: pic/test/large/cff879e4a7-large.jpg,
+    medium_path: pic/test/medium/cff879e4a7-medium.jpg, owner: 1, photo_hash: cff879e4a7d127f9bc8f39bc3436510bcbe678ba7ef381660e3e0108e5ee0afcd0f6093d500c66fcf86cdab2f2fe5f60d8e2d2d613ca185864b83b6ee974cb0e,
+    place: Place, small_path: pic/test/small/cff879e4a7-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:55:03.449054+00:00'}
+  model: gallery.photo
+  pk: 13
+- fields: {created: null, description: Fleurs, gallery: 3, large_path: pic/test/large/9eae9fd2de-large.jpg,
+    medium_path: pic/test/medium/9eae9fd2de-medium.jpg, owner: 1, photo_hash: 9eae9fd2de4e83604138ae30218ef384de3164eccc78411981487e3e954a60df43e318151c09ee4a3392ffa92ea3bf60d53c4a2e3e0ed730e6cdd9000fb1b11d,
+    place: fleurs, small_path: pic/test/small/9eae9fd2de-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:55:11.144959+00:00'}
+  model: gallery.photo
+  pk: 14
+- fields: {created: null, description: Dep, gallery: 3, large_path: pic/test/large/3e0adb8e23-large.jpg,
+    medium_path: pic/test/medium/3e0adb8e23-medium.jpg, owner: 1, photo_hash: 3e0adb8e23cddda65f2ae1773d53c2e5effc0901c2225118aa267a4bcba69fd3d6c734c3fd02910cd6bfd695e3ed6565fa1cfa5a6243285ed58718249f81ab80,
+    place: Dep, small_path: pic/test/small/3e0adb8e23-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:55:20.608009+00:00'}
+  model: gallery.photo
+  pk: 15
+- fields: {created: null, description: tour, gallery: 3, large_path: pic/test/large/2ee7ef0d90-large.jpg,
+    medium_path: pic/test/medium/2ee7ef0d90-medium.jpg, owner: 1, photo_hash: 2ee7ef0d90587ea93ac033386d6628f37399d2959eb1857504d478c06417e44453a34eee893aad3ac24b3cb8f30befa919e35e92d2a4435be5654757a025075a,
+    place: tour, small_path: pic/test/small/2ee7ef0d90-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:55:29.275507+00:00'}
+  model: gallery.photo
+  pk: 16
+- fields: {created: null, description: Apple, gallery: 3, large_path: pic/test/large/c992a366fa-large.jpg,
+    medium_path: pic/test/medium/c992a366fa-medium.jpg, owner: 1, photo_hash: c992a366fa8ceba2e29f6131a6daaf66dd2e72333a1f001f7a968a8f6699366e64409ac648b394765fe81f804524444911d13f843e76b9cd6aec86274f916c0b,
+    place: apple, small_path: pic/test/small/c992a366fa-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:55:36.792876+00:00'}
+  model: gallery.photo
+  pk: 17
+- fields: {created: null, description: Bastille, gallery: 3, large_path: pic/test/large/f6e03619c6-large.jpg,
+    medium_path: pic/test/medium/f6e03619c6-medium.jpg, owner: 1, photo_hash: f6e03619c6905a2d92a087dd44e578e40d30eb105a12bb902884f32dfe542f57d381c54b4a3cdd19b63b9e81750b5db36c5bc35d30a94b0aa47d026887699b4e,
+    place: bastille, small_path: pic/test/small/f6e03619c6-small.jpg, uploaded: !!timestamp '2013-07-31
+      18:55:45.887009+00:00'}
+  model: gallery.photo
+  pk: 18
