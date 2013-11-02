@@ -9,7 +9,7 @@ class HistoryMiddleware(object):
     def process_request(self, request):
         if "history" not in request.session.keys():
             request.session['history'] = list()
-        if request.get_full_path() not in ["/login", "/register"]:
+        if request.get_full_path() not in ["/wis/login", "/wis/register"]:
             request.session['history'].append(request.get_full_path())
         if len(request.session['history']) > 10:
             request.session['history'].pop(0)

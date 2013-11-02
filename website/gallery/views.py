@@ -187,7 +187,8 @@ def auth(request):
         context['username'] = username
 
         # META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
-        return redirect(request.session['history'][-1])
+        return home(request)
+        # return redirect(request.session['history'][-1])
 
     else:
         return HttpResponse(status=404)
