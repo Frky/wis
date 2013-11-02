@@ -3,6 +3,7 @@ import os
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
+from django.core.urlresolvers import reverse
 
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -137,7 +138,7 @@ def home(request):
 def search(request):
     gallery_to_go = dict(request.POST)
 
-    data = {'redirect': "/gallery/{}/{}".format(gallery_to_go['owner'].pop(), gallery_to_go['slug'].pop())}
+    data = {'redirect': reverse('wis_gallery_home', args=(gallery_to_go['owner'].pop(), gallery_to_go['slug'].pop()))}
 
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
