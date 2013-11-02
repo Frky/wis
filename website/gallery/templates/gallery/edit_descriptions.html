@@ -15,8 +15,8 @@
             {% for photo in photos %}
             <tr>
                 <td><img src="{{ MEDIA_URL }}{{ photo.small_path }}" width="50px"></td>
-                <td><input name="{{ photo.pk }}.desc" value="{{ photo.description }}" placeholder="Description"></td>
-                <td><input name="{{ photo.pk }}.place" value="{{ photo.place }}" placeholder="Lieu"></td>
+                <td><input name="{{ photo.pk }}.desc" value="{{ photo.description }}" placeholder="Description"> <span class="glyphicon glyphicon-comment"></span></td>
+                <td><input name="{{ photo.pk }}.place" value="{{ photo.place }}" placeholder="Lieu"> <span class="glyphicon glyphicon-map-marker"></span></td>
             {% endfor %}
         </table>
         <input type="hidden" name="type" value="edit">
