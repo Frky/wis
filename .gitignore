@@ -1,5 +1,5 @@
 *.pyc 
 *.swp 
-*.idea 
-*.sass-cache 
-*.DS_Store
+/.idea/
+/gallery/static/gallery/.sass-cache/
+.DS_Store
