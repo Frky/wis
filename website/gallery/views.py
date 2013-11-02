@@ -157,7 +157,7 @@ def create_gallery(request):
                               place=data['place'])
         new_gallery.save()
         messages.success(request, SUCCESS_GALLERY_CREATION)
-        return redirect("/gallery/" + request.user.username)
+        return redirect("wis_user_gallery", request.user.username)
     else:
         context['form'] = form
 
@@ -187,8 +187,8 @@ def auth(request):
         context['username'] = username
 
         # META['HTTP_REFERER'].replace(request.META["HTTP_ORIGIN"], ""))
-        return home(request)
         # return redirect(request.session['history'][-1])
+        return redirect("wis_home")
 
     else:
         return HttpResponse(status=404)
@@ -200,7 +200,7 @@ def sign_out(request):
 
     messages.success(request, SUCCESS_LOGOUT)
 
-    return redirect("/")
+    return redirect("wis_home")
 
 
 def register(request):
@@ -214,7 +214,8 @@ def register(request):
         user = authenticate(username=request.POST['username'], password=request.POST['password1'])
         login(request, user)
         messages.success(request, SUCCESS_AUTH)
-        return redirect(request.session['history'][-1])
+        # return redirect(request.session['history'][-1])
+        return redirect("wis_home")
     # request.session['redirect'])
     else:
         context['form'] = form
@@ -306,10 +307,12 @@ def ajax_upload(request):
 
     if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
         messages.error(request, ERROR_PERM)
-        return redirect(request.session['history'][-2])
+        # return redirect(request.session['history'][-2])
+        return redirect("wis_home")
     elif request.user.username != request.session["gallery_owner"]:
         messages.error(request, ERROR_PERM)
-        return redirect(request.session['history'][-2])
+        # return redirect(request.session['history'][-2])
+        return redirect("wis_home")
 
     # POST request
     #   meaning user has triggered an upload action
