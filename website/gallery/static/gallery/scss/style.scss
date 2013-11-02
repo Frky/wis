@@ -11,7 +11,7 @@ body {
     padding: 0;
     margin: 0;
     background-color: $background-color;
-    // font-family: Walkway;
+    // font-family: Walkway-Black;
     font-family: "Helvetica Neue";
     font-weight: 100;
 }
@@ -45,7 +45,7 @@ header {
     }
 
     #logo {
-        font-family: Walkway, serif;
+        font-family: Walkway-Black, serif;
         display: inline-block;
         float: left;
         font-size: 2.5em;
@@ -61,7 +61,7 @@ header {
 
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Walkway, serif;
+    font-family: Walkway-Black, serif;
 }
 
 h1 {
@@ -98,7 +98,7 @@ h3 {
         margin: 0 auto 0 auto;
         font-size: 20em;
         font-weight: 100;
-        font-family: Walkway, serif;
+        font-family: Walkway-Black, serif;
     }
     .tt-query, .tt-hint {
         display: block;
@@ -203,10 +203,19 @@ aside {
         list-style: none;
 
         &#galleryInfos {
-            font-family: Walkway-Expand, serif;
+            font-family: Walkway-SemiBold, serif;
             font-size: 1.1em;
             line-height: 30px;
             color: #34495e;
+            a {
+                text-decoration: underline;
+                &:visited {
+                    color: inherit;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+            }
         }
     }
 }
@@ -270,7 +279,7 @@ hr {
         width: 195px;
         position: absolute;
         color: $background-color;
-        font-family: Walkway-Expand, serif;
+        font-family: Walkway-SemiBold, serif;
         font-size: 0.9em;
         margin-top: 40px;
         margin-left: 300px;
@@ -591,7 +600,7 @@ form {
             margin-left: 30px;
 
             .gName {
-                font-family: Walkway;
+                font-family: Walkway-Black;
                 margin-top: 5px;
                 padding-right: 10px;
                 vertical-align: top;
