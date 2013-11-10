@@ -1,12 +1,13 @@
 from django.conf.urls import patterns, url, include
 from django.conf import settings
+from django.contrib import admin
 from gallery.views import home, register, search, auth, sign_out, create_gallery, \
     ajax_upload, edit_descriptions, check_user_availability, delete_obj
 
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
-# admin.autodiscover()
+admin.autodiscover()
 
 urlpatterns = patterns('',
                        url(r'^$',
@@ -71,7 +72,7 @@ urlpatterns = patterns('',
                        # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
                        # Uncomment the next line to enable the admin:
-                       # url(r'^admin/', include(admin.site.urls)),
+                       url(r'^admin/', include(admin.site.urls)),
                        )
 
 
