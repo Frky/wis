@@ -2,6 +2,7 @@ import time
 import hashlib
 from PIL import Image
 from django.db import models
+from django.contrib import admin
 from django.contrib.auth.models import User
 from gallery.const import LARGE_FOLDER, MEDIUM_FOLDER, SMALL_FOLDER,\
     MEDIUM_HEIGTH, SMALL_WIDTH, SMALL_HEIGHT, UPLOAD_FOLDER
@@ -78,6 +79,11 @@ class Photo(models.Model):
         self.gallery = Gallery.objects.get(pk=1)
         super(Photo, self).save(*args, **kwargs)
 
+    def thumbnail(self):
+        return """<a href="/data/{}"><img border="0" alt="" src="/data/{}" height="40" /></a>""".format(
+            self.small_path, self.small_path)
+    thumbnail.allow_tags = True
+
 
 class GalleryManager(models.Manager):
     def get_galleries_with_slug(self):
@@ -108,5 +114,31 @@ class Gallery(models.Model):
             unique_slugify(self, self.title[:255], slug_field_name='slug_name')
         super(Gallery, self).save(*args, **kwargs)
 
+    def count(self):
+        return Photo.objects.filter(gallery=self).count()
+
     def __unicode__(self):
         return self.title
+
+
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = ["id", "thumbnail", "description", "owner", "large_path", "gallery", "place",
+                    "uploaded", "created", ]
+    list_filter = ["owner", "gallery", "place"]
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ["__unicode__", "title", "owner", "description", "public", "place", "created",
+                    "slug_name", "count", ]
+    list_filter = ["owner", "public", "place", ]
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
+
+admin.site.register(Photo, PhotoAdmin)
+admin.site.register(Gallery, GalleryAdmin)
