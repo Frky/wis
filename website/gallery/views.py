@@ -120,6 +120,7 @@ def user_galleries(request, user):
 
     context['isOwner'] = (user == str(request.user))
 
+    context['owner'] = user
     context['galleries'] = Gallery.objects.filter(owner=User.objects.get(username=user))
 
     return render(request, template_name, context)
