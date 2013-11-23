@@ -7,10 +7,10 @@ urlpatterns = patterns('wis.apps.gallery.views',
                        url(r'^(?P<user>[-A-Za-z0-9_]+)$',
                            user_galleries,
                            name="wis_user_gallery"),
-                       )
 
                        # Galleries url
                        url(r'^(?P<user>[-A-Za-z0-9_]+)/(?P<gallery_slug>(.+))$',
                            gallery_home,
                            name="wis_gallery_home"),
+                       ),
 
