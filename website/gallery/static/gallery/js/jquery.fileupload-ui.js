@@ -85,6 +85,7 @@
                         return false;
                     }
                 }
+
                 if (data.context && data.dataType &&
                         data.dataType.substr(0, 6) === 'iframe') {
                     // Iframe Transport does not support progress events.
@@ -95,7 +96,7 @@
                         parseInt(100, 10)
                     );
                 }
-                document.getElementById("loader").style.display = "inline";
+
             },
             // Callback for successful uploads:
             done: function (e, data) {
@@ -459,7 +460,8 @@
                 data = tmpl.data('data');
             if (data && data.submit && !data.jqXHR) {
                 data.jqXHR = data.submit();
-                $(this).fadeOut();
+                $(this).css('display', 'none');
+                data.context.find("#loader").css('display', 'inline'); 
             }
         },
         
