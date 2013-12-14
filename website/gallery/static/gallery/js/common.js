@@ -10,7 +10,6 @@ function hideElement(div) {
     return
 }
 
-
 !function($){
 
     $("#id_public").on('change', function() {
@@ -20,5 +19,4 @@ function hideElement(div) {
                 $("#passwordContainer").show();
             }
     });
-
 }(window.jQuery);
