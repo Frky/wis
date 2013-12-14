@@ -281,8 +281,10 @@ hr {
         position: absolute;
         color: $background-color;
         font-family: Walkway-SemiBold, serif;
+        text-align: justify;
         font-size: 0.9em;
         margin-top: 40px;
+        margin-bottom: 40px;
         margin-left: 300px;
         word-break: break-word;
     }
@@ -653,7 +655,7 @@ form {
     }
 
     .start, .cancel {
-        widthr: 65px;
+        width: 65px;
     }
 }
 

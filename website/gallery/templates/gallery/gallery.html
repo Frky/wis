@@ -24,11 +24,11 @@
         <div id="center_column" class="column"></div>
         <div id="right_column" class="column"></div>
         {% for photo in photos %}
-            <div class="overlay js-overlay {% if photo.can_expand %}expandable{% endif %}">
+            <div id="{{ photo.pk }}" class="overlay js-overlay {% if photo.can_expand %}expandable{% endif %}">
                 {% if user == photo.owner %}
                     <a data-toggle="modal" href="{% url 'wis_delete' obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
                 {% endif %}
-                <span class="vignette-description">{{ photo.description|truncatechars:60 }}</span>
+                <span id="{{ photo.pk }}-desc" class="vignette-description">{{ photo.description }}</span>
                 {% if photo.can_expand %}
                     <span class="icon-resize-full icon-white vignette-expand"></span>
                 {% endif %}
