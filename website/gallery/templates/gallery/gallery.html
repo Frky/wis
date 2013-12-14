@@ -8,7 +8,7 @@
     <ul id="galleryInfos">
         {% if gallery.place %}<li><span class="glyphicon glyphicon-map-marker"></span> {{ gallery.place }}</li>{% endif %}
         {% if gallery.created %}<li><span class="glyphicon glyphicon-calendar"></span> {{ gallery.created }}</li>{% endif %}
-        {% if photos %}<li><span class="glyphicon glyphicon-picture"></span> {{ photos|length }} photos</li>{% endif %}
+        {% if photos %}<li><span class="glyphicon glyphicon-picture"></span> <span class="js-photo-count">{{ photos|length }}</span> photos</li>{% endif %}
         {% if isOwner %}
             <li><span class="glyphicon glyphicon-edit"></span> <a href="{% url 'wis_edit' %}">Editer</a></li>
             <li><span class="glyphicon glyphicon-plus"></span> <a href="{% url 'wis_upload' %}">Ajouter des images</a></li>

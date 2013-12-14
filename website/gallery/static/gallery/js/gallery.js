@@ -218,6 +218,7 @@
                     success:function(data){
                         image.fadeOut(400, function() {
                             $(this).remove();
+                            $('.js-photo-count').text(parseInt($('.js-photo-count').text(), 10) - 1);
                         });
                     },
                     error:function (xhr, textStatus, thrownError){
