@@ -12,6 +12,18 @@
     var ESCAPE_MARGIN = 13;
     var STEP = 240 + ESCAPE_MARGIN;
 
+    $.fn.resize_desc = function(divId, height) {
+        var div = $("#" + divId);
+//        var height = $(divId + " img").attr('data-height');
+        var desc = div.find(" .vignette-description");
+        var fontSize = parseFloat(desc.css('font-size'));
+        var margin = parseInt(desc.css('margin-top'));
+        do {
+            fontSize = fontSize - 1;
+            desc.css('font-size', fontSize.toString() + 'px');
+        } while (desc.height() > height);
+    }
+
     $.fn.move_columns = function(columns, line, type) {
         var best = {
             left_column: null,
@@ -106,6 +118,7 @@
             right_column: null
             }, best_down = null, best_up = null;
 
+
         if (column == LEFT_COLUMN) {
             if(width >= MEDIUM_WIDTH) {columns[CENTER_COLUMN] = $('#' + CENTER_COLUMN);}
             if(width >= LARGE_WIDTH) {columns[RIGHT_COLUMN] = $('#' + RIGHT_COLUMN);}
@@ -168,6 +181,7 @@
             } else if (_min == null || height < _min.height() ) {
                 _min = $(this);
             }
+            
         });
         _min.append(image.fadeIn(400));
 
@@ -181,6 +195,7 @@
                 _this.display_picture($(this));
             });
         }
+
     }
 
     $.fn.gallery_init = function() {
@@ -194,10 +209,16 @@
                 } else {
                     $(this).attr('data-height', this.naturalHeight);
                     $(this).attr('data-width', this.naturalWidth);
+
+                    /* Adapt description text size to height of the picture */
+                    $(this).resize_desc(img.parent().attr('id'), this.naturalHeight / (this.naturalWidth / 240));
                 }
             });
             _this.add_picture($(this).append(img).parent().hide())
+
         });
+            
+
 
         $('.delete-photo').on('click', function(event) {
             var url = $(this).attr('href');
@@ -227,5 +248,7 @@
     }
 
     $(this).gallery_init()
+
+
 
 }(window.jQuery);
