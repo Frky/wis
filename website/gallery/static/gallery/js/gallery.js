@@ -61,8 +61,8 @@
             {
                 duration: 500,
                 complete: function() {
-                    image.find('.delete-photo').show();
                     image.find('.vignette-description').show()
+                    image.find('.delete-photo').css('visibility', 'visible')
                     image.addClass('js-overlay');
                     image.css('overflow', 'hidden');
                     for (var key in best_down) {
@@ -124,8 +124,8 @@
         if (parseInt(width) > 240) {
             image.removeClass('js-overlay')
             image.css('overflow', 'visible');
-            image.find('.delete-photo').hide();
             image.find('.vignette-description').hide()
+            image.find('.delete-photo').css('visibility', 'hidden')
 
             image_container.css('z-index', 512);
             $('html, body').animate({scrollTop: image_container.offset().top - 200}, 500);
