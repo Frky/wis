@@ -97,8 +97,10 @@
         {% endblock %}
     </footer>
 
-    <script type="text/javascript" src="{% static 'gallery/js/common.js' %}"></script>
-    <script type="text/javascript" src="{% static 'gallery/js/alert.js' %}"></script>
+    {% block commonjs %}
+        <script type="text/javascript" src="{% static 'gallery/js/common.js' %}"></script>
+        <script type="text/javascript" src="{% static 'gallery/js/alert.js' %}"></script>
+    {% endblock %}
     {% block scripts %}
     {% endblock %}
 </body>
