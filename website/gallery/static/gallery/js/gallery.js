@@ -129,7 +129,7 @@
 
             image_container.css('z-index', 512);
             $('html, body').animate({scrollTop: image_container.offset().top - 200}, 500);
-            for (var key in best_up) {var elt = best_up[key];if (elt == null){continue;}elt.parents('.column').children().first().animate({marginTop: -(elt.offset().top + elt.height() - old_position.top + ESCAPE_MARGIN)},500);}
+            for (var key in best_up) {var elt = best_up[key];if (elt == null || elt.length == 0){continue;} elt.parents('.column').children().first().animate({marginTop: -(elt.offset().top + elt.height() - old_position.top + ESCAPE_MARGIN)},500);}
             for (var key in best_down) {
                 var elt = best_down[key];
                 if (elt == null){continue;}
@@ -161,10 +161,14 @@
     $.fn.add_picture = function(image) {
         var _this = this;
         var _min = null;
+        var _min_zero_counter = 0;
         $('#gallery .column').each(function() {
             var height = $(this).height();
             if (height == 0) {
-                _min = $(this);
+                if (_min_zero_counter == 0) {
+                    _min = $(this);
+                }
+                _min_zero_counter++;
             } else if (_min == null || height < _min.height() ) {
                 _min = $(this);
             }
