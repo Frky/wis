@@ -89,12 +89,13 @@ class GalleryManager(models.Manager):
     def get_galleries_with_slug(self):
         galleries = []
         for gallery in self.all():
-            galleries.append({
-                'owner': gallery.owner.username,
-                'slug': gallery.slug_name,
-                'name': gallery.title,
-                'count': Photo.objects.filter(gallery=gallery).count(),
-            })
+            if gallery.pk != 1:
+                galleries.append({
+                    'owner': gallery.owner.username,
+                    'slug': gallery.slug_name,
+                    'name': gallery.title,
+                    'count': Photo.objects.filter(gallery=gallery).count(),
+                })
         return galleries
 
 
