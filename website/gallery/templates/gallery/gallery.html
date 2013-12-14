@@ -28,7 +28,7 @@
                 {% if user == photo.owner %}
                     <a data-toggle="modal" href="{% url 'wis_delete' obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
                 {% endif %}
-                <span class="vignette-description">{{ photo.description }}</span>
+                <span id="{{ photo.pk }}-desc" class="vignette-description">{{ photo.description }}</span>
                 {% if photo.can_expand %}
                     <span class="icon-resize-full icon-white vignette-expand"></span>
                 {% endif %}
