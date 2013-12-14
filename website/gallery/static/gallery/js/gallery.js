@@ -13,15 +13,13 @@
     var STEP = 240 + ESCAPE_MARGIN;
 
     $.fn.resize_desc = function(divId, height) {
-        var div = $("#" + divId);
-//        var height = $(divId + " img").attr('data-height');
-        var desc = div.find(" .vignette-description");
+        var desc = $("#" + divId + "-desc");
         var fontSize = parseFloat(desc.css('font-size'));
         var margin = parseInt(desc.css('margin-top'));
-        do {
+        while (desc.height() + 2*margin > height && fontSize > 0) {
             fontSize = fontSize - 1;
             desc.css('font-size', fontSize.toString() + 'px');
-        } while (desc.height() > height);
+        }
     }
 
     $.fn.move_columns = function(columns, line, type) {
