@@ -40,23 +40,14 @@
             </div>
 
             {% block authForm %}
-            <div class="flipFormContainer">
-                <div class="flipper">
-                    <div class="front">
                         <div id="signIn"><!-- onclick="hideElement('signIn'); displayElement('login');" -->
                             Se connecter
                         </div>
-                    </div>
-                    <div class="back">
-                        <form id="login" class="inline" method="POST" action="{% url "wis_login" %}">
+                        <form id="login" class="hidden inline" method="POST" action="{% url "wis_login" %}">
                             {% csrf_token %}
                             {{ loginForm.as_p }}
-                            <input type="submit" id="validate" value="Go!" /> 
+                            <input class="btn btn-default" type="submit" id="validate" value="Go!" /> 
                         </form>
-                    </div>
-                </div>
-            </div>
-            </div>
             {% endblock %}
 
         {% endif %}
