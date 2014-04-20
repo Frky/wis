@@ -17,15 +17,18 @@ body {
 }
 
 header {
-    color: white;
+    color: black;
     background-color: $background-color;
-    background-color: $main-color;
     width: 100%;
     height: $headerHeight;
     position: fixed;
     top: 0px;
     box-shadow: 0 1px 0.4em 0.3em rgba(0, 0, 0, 0.15) /*Less ugly with opacity like this*/;
     z-index: 1024;
+
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 0px 2px 0px;
 
     #signIn, #register, #signOut, #userId {
         display: inline-block;
@@ -37,11 +40,17 @@ header {
         font-weight: 200;
         &:hover {
             color: orange;
+            cursor: pointer;
         }
     }
 
     #signIn {
-        margin-right: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+        border-style: solid;
+        border-color: black;
+        border-width: 0px 2px 0px 0px;
+
     }
 
     #logo {
@@ -54,8 +63,12 @@ header {
     }
 
     a {
-        color: white;
+        color: black;
         text-decoration: none;
+    }
+
+    a:hover {
+        color: orange;
     }
 }
 
@@ -188,6 +201,10 @@ h3 {
     #validate {
         //display: none;
     }
+
+    input {
+        padding-left: 10px;
+    }
 }
 
 aside {
@@ -258,11 +275,18 @@ hr {
     }
 }
 
+img {
+    border-radius: 10px;
+}
+
+
 .overlay {
     position: relative;
     display: block;
     margin-bottom: 13px;
     overflow: hidden;
+
+    border-radius: 10px;
 
     &:before {
         @include transition(0.5s background-color ease);
@@ -340,6 +364,7 @@ hr {
             display: block;
         }
     }
+        
 }
 
 /* BOOTSTRAP CSS import : ugly but we discuss about that soon */
@@ -437,14 +462,15 @@ input[type="search"] {
     -webkit-perspective: 1000;
     float: right;
     margin-right: 10px;
-    background-color: $background-color;
+    background-color: white;
     height: $headerHeight + 0px;
 }
+
     /* flip the pane when hovered */
-    .flipFormContainer:hover .flipper, .flipFormContainer.hover .flipper {
+/*    .flipFormContainer:hover .flipper, .flipFormContainer.hover .flipper {
         -webkit-transform: rotateX(-180deg);
     }
-
+*/
 .flipFormContainer, .front, .back {
     width: 400px;
     position: relative;
@@ -462,7 +488,6 @@ input[type="search"] {
 /* hide back of pane during swap */
 .front, .back {
     -webkit-backface-visibility: hidden;
-    background-color: $main-color;
     height: $headerHeight;
 
     position: absolute;

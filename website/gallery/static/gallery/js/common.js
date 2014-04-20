@@ -20,3 +20,10 @@ function hideElement(div) {
             }
     });
 }(window.jQuery);
+
+
+$("#signIn").on("click", function() {
+
+    $("#login").toggleClass("hidden");
+
+});
