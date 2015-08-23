@@ -2,7 +2,8 @@ from django.conf.urls import patterns, url, include
 from django.conf import settings
 from django.contrib import admin
 from gallery.views import home, register, search, auth, sign_out, create_gallery, \
-    ajax_upload, edit_descriptions, check_user_availability, delete_obj
+    ajax_upload, edit_descriptions, check_user_availability, delete_obj, save_size, \
+    select_cover, change_pwd
 
 
 # Uncomment the next two lines to enable the admin:
@@ -36,6 +37,11 @@ urlpatterns = patterns('',
                            sign_out,
                            name="wis_logout"),
 
+                       # Change pwd view
+                       url(r'^pwd$',
+                           change_pwd,
+                           name="wis_change_pwd"),
+
                        # Upload view
                        # url(r'^upload$', "gallery.views.upload"),
 
@@ -53,6 +59,16 @@ urlpatterns = patterns('',
                        url(r'^edit$',
                            edit_descriptions,
                            name="wis_edit"),
+
+                       # Save new size of image
+                       url(r'^save_size$',
+                           save_size,
+                           name="wis_save_size"),
+
+                       # Select cover for gallery
+                       url(r'^select_cover$',
+                           select_cover,
+                           name="wis_select_cover"),
 
                        # Delete a picture
                        url(r'^delete/(?P<obj_type>[-A-Za-z0-9_]+)/(?P<obj_id>[-A-Za-z0-9_]+)$',

@@ -1,7 +1,7 @@
 from django import forms
 from django.db import models
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from gallery.models import Image, Gallery
 
 

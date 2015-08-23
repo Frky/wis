@@ -17,8 +17,8 @@ body {
 }
 
 header {
-    color: black;
-    background-color: $background-color;
+    color: white;
+    background-color: $main-color;
     width: 100%;
     height: $headerHeight;
     position: fixed;
@@ -27,7 +27,7 @@ header {
     z-index: 1024;
 
     border-style: solid;
-    border-color: black;
+    border-color: $main-color;
     border-width: 0px 0px 2px 0px;
 
     #signIn, #register, #signOut, #userId {
@@ -48,7 +48,7 @@ header {
         padding-right: 20px;
         padding-left: 20px;
         border-style: solid;
-        border-color: black;
+        border-color: white;
         border-width: 0px 2px 0px 0px;
 
     }
@@ -63,7 +63,7 @@ header {
     }
 
     a {
-        color: black;
+        color: white;
         text-decoration: none;
     }
 
@@ -204,11 +204,16 @@ h3 {
 
     input {
         padding-left: 10px;
+        background-color: $main-color;
+        border-color: white;
+        color: white;
     }
 }
 
+$aside-width: 300px;
+
 aside {
-    width: 300px;
+    width: $aside-width;
     height: 100%;
     position: fixed;
     text-align: right;
@@ -240,15 +245,15 @@ aside {
 
 section {
     &#gallery {
-        width: 760px;
-        margin-left: 385px;
+        margin-left: $aside-width + 25px;
+        margin-bottom: 60px;
         margin-top: 60px;
-        padding-top: 40px;
+        padding-top: 00px;
 
         .column {
             width: 240px;
             float: left;
-            margin-right: 13px;
+            margin-right: 5px;
         }
     }
 }
@@ -264,7 +269,7 @@ hr {
     margin-top: 130px;
     margin-bottom: 170px;
     text-align: center;
-    width: 800px;
+    width: 1000px;
 
     h2 {
         padding-bottom: 40px;
@@ -273,20 +278,117 @@ hr {
         border-color: $main-color; 
         border-width: 0px 0px 1px 0px;
     }
+    &#uploadForm {
+        input[type="button"], input[type="reset"], input[type="submit"] {
+            width: 120px;
+        }
+    }
 }
 
 img {
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
+#editForm {
+    table {
+        td {
+            position: relative;
+
+            .cover {
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                height: 50px;
+                line-height: 50px;
+                width: 50px;
+                z-index: 4096;
+                font-size: 0.5em;
+                text-align: center;
+                background-color: rgba(44, 62, 80, 0.5);
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.gridster {
+    width: 1000px;
+    ul {
+        position: absolute;
+        z-index: 2;
+        background-color: white;
+        list-style-type: none;
+        padding: 0px;
+        li.pic-ctnr {
+            background-color: gray;
+            position: absolute;
+            padding: 0px;
+            overflow: hidden;
+            &:before {
+                content: "";
+            }
+            .vignette {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            .vignette img {
+                position: absolute;
+                min-width: 100%;
+                width: 100%;
+                height: auto;
+                margin: 0px;
+                z-index: -1;
+            }
+            .vignette-description {
+                position: relative;
+                // TODO CHANGE
+                height: 100%;// 105px;
+                width: 100%; //140px;
+                z-index: 1;
+                color: $background-color;
+                font-family: Walkway-SemiBold, serif;
+                text-align: justify;
+                font-size: 0.9em;
+                padding: 0px;
+                margin-left: 0px;
+                word-break: break-word;
+                background-color: rgba(44, 62, 80, 0.5);
+                .img-control {
+                    $img-margin-in: 5px;
+                    position: absolute;
+                    top: $img-margin-in;
+                    right: $img-margin-in;
+                    height: 5px;
+                    a {
+                        color: $background-color;
+                    }
+                }
+                span.txt-desc {
+                    display: inline-block;
+                    position: absolute;
+                    font-size: 0.9em;
+                    top: 20px;
+                    left: 20px;
+                    right: 20px;
+                    bottom: 20px;
+                }
+            }
+        }
+    }
+}
 
 .overlay {
+    background-color: rgba(44, 62, 80, 0.5);
+
+    /*
     position: relative;
     display: block;
-    margin-bottom: 13px;
+    margin-bottom: 5px;
     overflow: hidden;
 
-    border-radius: 10px;
+    border-radius: 5px;
 
     &:before {
         @include transition(0.5s background-color ease);
@@ -343,6 +445,7 @@ img {
             display: block;
         }
     }
+    */
 }
 .js-overlay {
     &:hover {
@@ -368,41 +471,6 @@ img {
 }
 
 /* BOOTSTRAP CSS import : ugly but we discuss about that soon */
-
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-    display: inline-block;
-    line-height: 20px;
-    color: $main-color;
-    vertical-align: middle;
-    border: 1px solid $main-color;
-
-    @include border-radius(2px);
-    @include box-shadow(inset 0 1px 1px rgba(44, 62, 80, 0.175));
-    @include transition(border linear 0.2s, box-shadow linear 0.2s);
-
-    &:focus {
-        border-color: rgba(82, 168, 236, 0.8);
-        outline: 0;
-        outline: thin dotted \9;
-        /* IE6-9 */
-        @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
-    }
-}
 
 input[type="search"] {
     background-image: url("../../images/search.jpeg");
@@ -546,7 +614,7 @@ form {
         text-align: right;
     }
 
-    input {
+    input[type="text"], input[type="password"] {
         width: 150px;
         margin-left: 50px;
     }
@@ -603,7 +671,7 @@ form {
         text-decoration: none;
     }
 
-    #creation {
+    p#buttons {
         display: block;
         width: 100%;
         margin-bottom: 60px;
@@ -685,7 +753,7 @@ form {
 }
 
 .hidden {
-    display: None;
+    display: none;
 }
 
 .badge {
@@ -716,5 +784,69 @@ table {
     a {
         text-decoration: none;
         color: black;
+    }
+}
+
+input.arrange { 
+    display: none;
+    min-height: 50px;
+    position: fixed;
+    z-index: 2048;
+    top: 0px;
+    background-color: white;
+    color: $main-color;
+    font-size: 1.2em;
+    &#save-arrange {
+        width: 80%;
+        left: 0px;
+    }
+    &#cancel-arrange {
+        width: 20%;
+        right: 0px;
+    }
+    &.active {
+        display: block;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.calc {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1;
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.footnote {
+    width: 100%;
+    text-align: center;
+}
+
+#manage-gallery {
+    position: fixed;
+    $margin: 20px;
+    bottom: $margin;
+    left: $margin;
+    width: $aside-width - 2*$margin; 
+}
+
+#pwdProtection {
+    margin: 50px;
+    padding-top: 50px;
+
+    form {
+        margin-top: 20px;
+        input {
+            width: 200px;
+        }
     }
 }

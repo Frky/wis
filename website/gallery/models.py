@@ -31,6 +31,12 @@ class Photo(models.Model):
     gallery = models.ForeignKey('Gallery', null=False)
     photo_hash = models.CharField(max_length=255)
 
+    # Display-relative infos
+    row = models.IntegerField(null=True, blank=True)
+    col = models.IntegerField(null=True, blank=True)
+    size_x = models.IntegerField(null=True, blank=True)
+    size_y = models.IntegerField(null=True, blank=True)
+
     @property
     def can_expand(self):
         width, height = Image.open(self.large_path.path).size
@@ -109,6 +115,7 @@ class Gallery(models.Model):
     place = models.CharField(max_length=255, blank=True, null=True)
     created = models.DateField(null=True)
     objects = GalleryManager()
+    cover = models.ForeignKey(Photo, null=True, blank=True, related_name="gallery_cover")
 
     def save(self, *args, **kwargs):
         if self.title:

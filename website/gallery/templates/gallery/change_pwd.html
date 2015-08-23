@@ -1,0 +1,30 @@
+{% extends "gallery/base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<section id="registerForm">
+<h2>Changement de mot de passe</h2>
+<form class="formContainer" method="post" action="{% url 'wis_change_pwd' %}">
+    {% csrf_token %}
+    {% for field in changePwdForm %}
+        <div class="fieldContainer">
+            <div class="label">
+                {{ field.label }} 
+            </div>
+            <div class="field {% if field.errors %}has-error{% endif %}" id="{{ field.name }}Field">
+                {{ field }}
+                <div class="help-block">
+                    {{ field.errors.as_text }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div id="submitButton"> 
+        <input type="submit" value="Changer mon mot de passe">
+    </div>
+</form>
+
+<script type="text/javascript" src="{% static 'gallery/js/jquery-1.10.2.js' %}"></script>
+</section>
+{% endblock %}

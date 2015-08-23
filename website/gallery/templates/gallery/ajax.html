@@ -42,11 +42,11 @@
         {% csrf_token %}
         <div class="fileupload-buttonbar">
             <label class="fileinput-button">
-                <input type="file" name="files[]" multiple>
+                <input type="file" name="files[]" multiple value="Choisir des photos">
             </label>
-            <button type="submit" class="start">Envoyer tout</button>
-            <button type="reset" class="cancel">Annuler tout</button>
-            <a href="{% url "wis_gallery_home" gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
+            <input type="submit" class="start" value="Envoyer tout">
+            <input type="reset" class="cancel" value="Annuler tout">
+            <a href="{% url "wis_gallery_home" gallery_owner gallery_slug %}"><input type="button" value="Retour à la galerie"></a>
         </div>
     </form>
     <div class="fileupload-content">

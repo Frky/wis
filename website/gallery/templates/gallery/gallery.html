@@ -10,12 +10,22 @@
         {% if gallery.created %}<li><span class="glyphicon glyphicon-calendar"></span> {{ gallery.created }}</li>{% endif %}
         {% if photos %}<li><span class="glyphicon glyphicon-picture"></span> <span class="js-photo-count">{{ photos|length }}</span> photos</li>{% endif %}
         {% if isOwner %}
+        <div class="control-panel hidden">
+           <li><span class="glyphicon glyphicon-th"></span> <a href="#" id="arrange">Arranger</a></li>
             <li><span class="glyphicon glyphicon-edit"></span> <a href="{% url 'wis_edit' %}">Editer</a></li>
-            <li><span class="glyphicon glyphicon-plus"></span> <a href="{% url 'wis_upload' %}">Ajouter des images</a></li>
+            <li><span class="glyphicon glyphicon-upload"></span> <a href="{% url 'wis_upload' %}">Ajouter des images</a></li>
+        </div>
         {% endif %}
     </ul>
+    {% if isOwner %}
+        <input type="button" id="manage-gallery" value="Gérer ma galerie" />
+    {% endif %}
 </aside>
+    <input type="button" class="arrange" id="save-arrange" value="Sauvegarder les modifications" />
+    <input type="button" class="arrange" id="cancel-arrange" value="Annuler" />
 {% endblock %}
+
+{% load gallery_extra %}
 
 {% block content %}
 <section id="gallery">
@@ -23,27 +33,55 @@
         <div id="left_column" class="column"></div>
         <div id="center_column" class="column"></div>
         <div id="right_column" class="column"></div>
+        <div class="gridster"><ul>
         {% for photo in photos %}
-            <div id="{{ photo.pk }}" class="overlay js-overlay {% if photo.can_expand %}expandable{% endif %}">
+        <li class="pic-ctnr" 
+                data-col="{% if photo.col %}{{ photo.col }}{% else %}{{ forloop.counter0|col:3 }}{% endif %}" 
+                data-row="{% if photo.row %}{{ photo.row }}{% else %}{{ forloop.counter0|row:3 }}{% endif %}" 
+                data-sizey="{% if photo.size_y %}{{ photo.size_y }}{% else %}5{% endif %}" 
+                data-sizex="{% if photo.size_x %}{{ photo.size_x }}{% else %}5{% endif %}" 
+                data-csrf="{{ csrf_token }}">
+            <div class="vignette" data-iid="{{ photo.pk }}"> 
+                <img data-url="{{ MEDIA_URL }}{% if photo.size_x < 10 %}{{ photo.small_path }}{% elif photo.size_x < 20 %}{{ photo.medium_path }}{% else %}{{ photo.large_path }}{% endif %} " />
+                <div id="{{ photo.pk }}-desc" class="vignette-description hidden">
+                    <div class="img-control">
+                        <a class="img-link" href="{{ MEDIA_URL }}{{ photo.large_path }}" download="{{ photo.large_path }}"><span class="glyphicon glyphicon-download"></span></a>
+                        {% if user == photo.owner %}
+                        <a data-toggle="modal" href="{% url 'wis_delete' obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo hidden">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        {% endif %}
+                    </div>
+                    <span class="txt-desc">{{ photo.description }}</span>
+                </div>
+            </div>
+                <!-- 
                 {% if user == photo.owner %}
-                    <a data-toggle="modal" href="{% url 'wis_delete' obj_type='photo' obj_id=photo.pk %}" class="btn btn-primary btn-lg delete-photo">&times;</a>
                 {% endif %}
                 <span id="{{ photo.pk }}-desc" class="vignette-description">{{ photo.description }}</span>
                 {% if photo.can_expand %}
                     <span class="icon-resize-full icon-white vignette-expand"></span>
                 {% endif %}
                 <img class="vignette" data-url="{{ MEDIA_URL }}{{ photo.medium_path }}" src="" data-index="{{ forloop.counter }}"/>
-            </div>
+                -->
+        </li>
         {% endfor %}
+        </ul></div>
+        <script>
+        </script>
 {% else %}
+    <div id="pwdProtection">
     Cette galerie est protégée par un mot de passe.
     <form method="post" action="{% url 'wis_gallery_home' gallery_owner gallery_slug %}">
         {% csrf_token %}
         <input type="hidden" name="type" value="password">
-        <input type="password" name="password">
-        <input type="submit">
+        <input type="password" name="password" placeholder="Mot de passe">
+        <input type="submit" value="Acccéder à la galerie">
     </form>
+    </div>
 {% endif %}
+    <div class="calc"> </div>
+
 </section>
 {% include "gallery/partials/_modal.html" with id="popinDelete" title="Supprimer cette image" apply="Supprimer" cancel="Annuler" message="Êtes-vous sûr de vouloir supprimer cette image ?" %}
 
@@ -52,7 +90,10 @@
 
 {% block scripts %}
     {% load staticfiles %}
-    <script type="text/javascript" src="{% static 'gallery/js/jquery-1.10.2.js' %}"></script>
+    <script type="text/javascript" src="{% static 'gallery/js/jquery.gridster.js' %}"></script>
     <script type="text/javascript" src="{% static 'gallery/js/modal.js' %}"></script>
     <script type="text/javascript" src="{% static 'gallery/js/gallery.js' %}"></script>
+    <script type="text/javascript">
+        var URL_SAVE_IMG_SIZE = "{% url 'wis_save_size' %}";
+    </script>
 {% endblock %}

@@ -1,5 +1,13 @@
 {% extends "gallery/base.html" %}
 
+{% block scripts %}
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'gallery/js/edit_gallery.js' %}"></script>
+    <script>
+        var URL_SELECT_COVER = "{% url 'wis_select_cover' %}";
+    </script>
+{% endblock %}
+
 {% block content %}
 <section id="editForm">
     <h2>Édition</h2>
@@ -9,20 +17,26 @@
             Nom de la galerie
         </div>
         <div class="field">
-            <input name="gallery_name" value="{{ gallery }}">
+            <input type="text" name="gallery_name" value="{{ gallery }}">
+            <input type="hidden" id="gid" value="{{ gallery.pk }}">
         </div>
         <table>
             {% for photo in photos %}
             <tr>
-                <td><img src="{{ MEDIA_URL }}{{ photo.small_path }}" width="50px"></td>
-                <td><input name="{{ photo.pk }}.desc" value="{{ photo.description }}" placeholder="Description"> <span class="glyphicon glyphicon-comment"></span></td>
-                <td><input name="{{ photo.pk }}.place" value="{{ photo.place }}" placeholder="Lieu"> <span class="glyphicon glyphicon-map-marker"></span></td>
+                <td data-iid="{{ photo.pk }}"><img src="{{ MEDIA_URL }}{{ photo.small_path }}" width="50px">
+                    <div class="cover
+                        {% if gallery.cover != photo %}hidden{% else %}active{% endif %}
+                        ">une</div>
+                </td>
+                <td><input type="text" name="{{ photo.pk }}.desc" value="{{ photo.description }}" placeholder="Description"> <span class="glyphicon glyphicon-comment"></span></td>
+                <td><input type="text" name="{{ photo.pk }}.place" value="{{ photo.place }}" placeholder="Lieu"> <span class="glyphicon glyphicon-map-marker"></span></td>
             {% endfor %}
         </table>
         <input type="hidden" name="type" value="edit">
+        <div class="footnote">"une" désigne la photo de couverture de la galerie</div>
         <div id="submitButton"> 
             <input type="submit" value="Enregistrer">
-            <a href="{% url 'wis_gallery_home' gallery_owner gallery_slug %}"><button type="button">Retour à la galerie</button></a>
+            <a href="{% url 'wis_gallery_home' gallery_owner gallery_slug %}"><input type="button" value="Retour à la galerie"></a>
         </div>
     </form>
 </section>

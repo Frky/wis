@@ -14,7 +14,8 @@ from django.shortcuts import render, redirect
 from gallery.models import *
 from gallery.forms import *
 from gallery.messages import ERROR_PERM, ERROR_AUTH, SUCCESS_AUTH, SUCCESS_LOGOUT, SUCCESS_GALLERY_CREATION, \
-    ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY, SUCCESS_EDIT
+    ERROR_ACCESS_GALLERY, SUCCESS_ACCESS_GALLERY, SUCCESS_EDIT, \
+    ERROR_CHANGE_PWD, SUCCESS_CHANGE_PWD
 
 context = dict()
 context['loginForm'] = UserForm()
@@ -43,6 +44,8 @@ def edit_descriptions(request):
 def delete_obj(request, obj_type, obj_id):
     if ContentType.objects.get(model=obj_type) == ContentType.objects.get_for_model(Photo):
         photo = Photo.objects.get(pk=obj_id)
+        if photo.owner != request.user:
+            return HttpResponse("Go to hell, hacker.")
         photo.remove()
 
     return HttpResponse('')
@@ -484,3 +487,60 @@ def check_user_availability(request, username):
         return HttpResponse(False)
     else:
         return HttpResponse(True)
+
+
+def save_size(request):
+    try:
+        iid = request.GET["iid"]
+        row = request.GET["row"]
+        col = request.GET["col"]
+        sizex = request.GET["sizex"]
+        sizey = request.GET["sizey"]
+    except KeyError:
+        return HttpResponseBadRequest("Unknown Error")
+    img = Photo.objects.get(pk=iid)
+    # Verification of permissions
+    if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
+        return HttpResponseBadRequest(ERROR_PERM)
+    elif request.user != img.owner:
+        return HttpResponseBadRequest(ERROR_PERM)
+    img.size_x = sizex
+    img.size_y = sizey
+    img.col = col
+    img.row = row
+    img.save()
+    return HttpResponse("OK")
+
+
+def select_cover(request):
+    try:
+        iid = request.GET["iid"]
+        gid = request.GET["gid"]
+    except KeyError:
+        return HttpResponseBadRequest("Unknown Error")
+    gallery = Gallery.objects.get(pk=gid) 
+    img = Photo.objects.get(pk=iid)
+    # Verification of permissions
+    if not request.user.is_authenticated or str(request.user) == "AnonymousUser":
+        return HttpResponseBadRequest(ERROR_PERM)
+    elif request.user != img.owner or request.user != gallery.owner:
+        return HttpResponseBadRequest(ERROR_PERM)
+    # Check for consistency
+    if img.gallery != gallery:
+        return HttpResponseBadRequest("Inconsistency")
+    gallery.cover = img
+    gallery.save()
+    return HttpResponse("OK")
+
+def change_pwd(request):
+    template_name = "gallery/change_pwd.html"
+    context["changePwdForm"] = PasswordChangeForm(request.user, request.POST or None)
+    if context["changePwdForm"].is_valid():
+        context["changePwdForm"].save()
+        messages.success(request, SUCCESS_CHANGE_PWD)
+        return redirect("wis_user_gallery", request.user.username)
+    elif "old_password" in request.POST.keys():
+        print context["changePwdForm"].errors
+        messages.error(request, ERROR_CHANGE_PWD)
+    return render(request, template_name, context)
+
