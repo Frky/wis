@@ -56,13 +56,15 @@ class Photo(models.Model):
         self.place = self.gallery.place
 
         image_width, image_height = image.size
-        self.size_x = 20
-        self.size_y = image_height * 20 / image_width
-        self.col = 1
-        self.row = 1
-        for p in Photo.objects.all().filter(gallery=self.gallery):
-            if p.row is not None and p.size_y is not None:
-                self.row = max(self.row, p.row + p.size_y + 1)
+        if self.size_x is None:
+            self.size_x = 20
+            self.size_y = image_height * 20 / image_width
+        if self.col is None:
+            self.col = 1
+            self.row = 1
+            for p in Photo.objects.all().filter(gallery=self.gallery):
+                if p.row is not None and p.size_y is not None:
+                    self.row = max(self.row, p.row + p.size_y + 1)
         for size in dict_sizes[::-1]:
             if image_width > size:
                 MEDIUM_WIDTH = size if size != 0 else dict_sizes[1]
